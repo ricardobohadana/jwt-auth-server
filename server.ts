@@ -56,4 +56,4 @@ app.get("/users", getAllUsers);
 app.use("/logout", authenticateToken);
 app.get("/logout", signOutController);
 
-app.listen(env.PORT || 3001);
+app.listen(env.PORT || 3001, () => console.log("API ONLINE"));

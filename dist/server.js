@@ -54,4 +54,4 @@ app.get("/users", getAllUsers_1.default);
 // logout
 app.use("/logout", authenticateToken_1.default);
 app.get("/logout", signOutController_1.default);
-app.listen(3001);
+app.listen(env.PORT || 3001, () => console.log("API ONLINE"));
