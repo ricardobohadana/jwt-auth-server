@@ -1,0 +1,28 @@
+GET http://localhost:3001/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJpY2FyZG8iLCJwYXNzd29yZCI6IiQyYiQxMCRqRkJ4SUs0Wkk2OVAyUFpCMk1FOXEuQmVLSEhiU2E4QTA5OXJzdGF5NmJrd09RTXlteDJ2TyIsImlhdCI6MTY0Njc5ODQxOSwiZXhwIjoxNjQ2Nzk4NDM5fQ.T2-uoTet3CtM52EINs3Xwfs8WxEiboA8DUcHGWZ4qFI
+Cookie: refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJpY2FyZG8iLCJwYXNzd29yZCI6IiQyYiQxMCRqRkJ4SUs0Wkk2OVAyUFpCMk1FOXEuQmVLSEhiU2E4QTA5OXJzdGF5NmJrd09RTXlteDJ2TyIsImlhdCI6MTY0Njc5ODM0OH0.7dZYp3wnuHVvViUfUGT2lgwopvEPC8VLmrX7cIJZ1_4
+
+###
+GET http://localhost:3001/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJpY2FyZG8iLCJwYXNzd29yZCI6IiQyYiQxMCRqRkJ4SUs0Wkk2OVAyUFpCMk1FOXEuQmVLSEhiU2E4QTA5OXJzdGF5NmJrd09RTXlteDJ2TyIsImlhdCI6MTY0Njc5ODM0OCwiZXhwIjoxNjQ2Nzk4MzY4fQ.tW80iowdCtaDAzTnAyE0fyCevqXHyLtSIEgrjlPWtKM
+Cookie: refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJpY2FyZG8iLCJwYXNzd29yZCI6IiQyYiQxMCRqRkJ4SUs0Wkk2OVAyUFpCMk1FOXEuQmVLSEhiU2E4QTA5OXJzdGF5NmJrd09RTXlteDJ2TyIsImlhdCI6MTY0Njc5ODM0OH0.7dZYp3wnuHVvViUfUGT2lgwopvEPC8VLmrX7cIJZ1_4
+
+###
+POST http://localhost:3001/signup
+Content-Type: application/json
+
+{
+    "username": "Ricardo",
+    "password": "caco123"
+}
+
+###
+POST http://localhost:3001/signin
+Content-Type: application/json
+
+{
+    "username": "Ricardo",
+    "password": "caco123"
+}
+
+
