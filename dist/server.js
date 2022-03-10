@@ -20,7 +20,9 @@ const app = (0, express_1.default)();
 exports.authTimeout = "10m";
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: "https://jwt-auth-login-page.vercel.app",
+}));
 // register
 app.post("/signup", signUpController_1.default);
 // login

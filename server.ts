@@ -16,7 +16,11 @@ export const authTimeout = "10m";
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+    cors({
+        origin: "https://jwt-auth-login-page.vercel.app",
+    })
+);
 
 // register
 app.post("/signup", signUpController);
