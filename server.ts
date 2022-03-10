@@ -55,4 +55,5 @@ app.get("/users", getAllUsers);
 // logout
 app.use("/logout", authenticateToken);
 app.get("/logout", signOutController);
-app.listen(3001);
+
+app.listen(env.PORT || 3001);
