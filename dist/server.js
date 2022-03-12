@@ -13,6 +13,8 @@ const client_1 = require("@prisma/client");
 const signOutController_1 = __importDefault(require("./controllers/signOutController"));
 const getAllUsers_1 = __importDefault(require("./controllers/getAllUsers"));
 const authenticateToken_1 = __importDefault(require("./tokens/authenticateToken"));
+const deleteUserController_1 = __importDefault(require("./controllers/deleteUserController"));
+const updateUserController_1 = __importDefault(require("./controllers/updateUserController"));
 const { env } = process;
 exports.prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
@@ -38,11 +40,6 @@ app.use(express_1.default.json());
 //     // Pass to next layer of middleware
 //     next();
 // });
-// app.use(
-//     cors({
-//         origin: "https://jwt-auth-login-page.vercel.app",
-//     })
-// );
 app.use((0, cors_1.default)());
 // register
 app.post("/signup", signUpController_1.default);
@@ -54,4 +51,11 @@ app.get("/users", getAllUsers_1.default);
 // logout
 app.use("/logout", authenticateToken_1.default);
 app.get("/logout", signOutController_1.default);
+// delete user
+app.use("/delete", authenticateToken_1.default);
+app.post("/delete", deleteUserController_1.default);
+// update user
+app.use("/update", authenticateToken_1.default);
+app.post("/update", updateUserController_1.default);
+// listen port
 app.listen(env.PORT || 3001, () => console.log("API ONLINE"));

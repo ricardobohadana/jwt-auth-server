@@ -19,7 +19,7 @@ async function signInController(req: Request, res: Response) {
     const { username, password } = req.body;
 
     // check if user with 'username' exists
-    var dbUser = (await prisma.user.findUnique({
+    var dbUser = (await prisma.user.findFirst({
         where: {
             username: username,
         },

@@ -29,7 +29,7 @@ function signInController(req, res) {
                 .json({ error: "username or password is missing" });
         const { username, password } = req.body;
         // check if user with 'username' exists
-        var dbUser = (_a = (yield server_1.prisma.user.findUnique({
+        var dbUser = (_a = (yield server_1.prisma.user.findFirst({
             where: {
                 username: username,
             },
