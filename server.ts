@@ -17,30 +17,28 @@ const app = express();
 export const authTimeout = "10m";
 
 app.use(express.json());
-// app.use(cookieParser());
-// app.use(function (req, res, next) {
-//     // Website you wish to allow to connect
-//     res.setHeader(
-//         "Access-Control-Allow-Origin",
-//         "https://jwt-auth-login-page.vercel.app"
-//     );
+app.use(cookieParser());
 
-//     // Request methods you wish to allow
-//     res.setHeader(
-//         "Access-Control-Allow-Methods",
-//         "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-//     );
+// cors options
+const allowedDomains = [
+    "https://jwt-auth-login-page.vercel.app",
+    "http://localhost:3000",
+];
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (origin === undefined) {
+                callback(new Error("Not allowed origin by CORS"));
+            } else if (allowedDomains.indexOf(origin) !== -1) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed origin by CORS"));
+            }
+        },
+        optionsSuccessStatus: 200,
+    })
+);
 
-//     // Request headers you wish to allow
-//     res.setHeader(
-//         "Access-Control-Allow-Headers",
-//         "X-Requested-With,content-type"
-//     );
-
-//     // Pass to next layer of middleware
-//     next();
-// });
-app.use(cors());
 // register
 app.post("/signup", signUpController);
 

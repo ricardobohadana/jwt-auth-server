@@ -12,6 +12,7 @@ const signInController_1 = __importDefault(require("./controllers/signInControll
 const client_1 = require("@prisma/client");
 const signOutController_1 = __importDefault(require("./controllers/signOutController"));
 const getAllUsers_1 = __importDefault(require("./controllers/getAllUsers"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const authenticateToken_1 = __importDefault(require("./tokens/authenticateToken"));
 const deleteUserController_1 = __importDefault(require("./controllers/deleteUserController"));
 const updateUserController_1 = __importDefault(require("./controllers/updateUserController"));
@@ -20,27 +21,26 @@ exports.prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
 exports.authTimeout = "10m";
 app.use(express_1.default.json());
-// app.use(cookieParser());
-// app.use(function (req, res, next) {
-//     // Website you wish to allow to connect
-//     res.setHeader(
-//         "Access-Control-Allow-Origin",
-//         "https://jwt-auth-login-page.vercel.app"
-//     );
-//     // Request methods you wish to allow
-//     res.setHeader(
-//         "Access-Control-Allow-Methods",
-//         "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-//     );
-//     // Request headers you wish to allow
-//     res.setHeader(
-//         "Access-Control-Allow-Headers",
-//         "X-Requested-With,content-type"
-//     );
-//     // Pass to next layer of middleware
-//     next();
-// });
-app.use((0, cors_1.default)());
+app.use((0, cookie_parser_1.default)());
+// cors options
+const allowedDomains = [
+    "https://jwt-auth-login-page.vercel.app",
+    "http://localhost:3000",
+];
+app.use((0, cors_1.default)({
+    origin: (origin, callback) => {
+        if (origin === undefined) {
+            callback(new Error("Not allowed origin by CORS"));
+        }
+        else if (allowedDomains.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed origin by CORS"));
+        }
+    },
+    optionsSuccessStatus: 200,
+}));
 // register
 app.post("/signup", signUpController_1.default);
 // login
