@@ -16,6 +16,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const authenticateToken_1 = __importDefault(require("./tokens/authenticateToken"));
 const deleteUserController_1 = __importDefault(require("./controllers/deleteUserController"));
 const updateUserController_1 = __importDefault(require("./controllers/updateUserController"));
+const validateTokensController_1 = __importDefault(require("./controllers/validateTokensController"));
 const { env } = process;
 exports.prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
@@ -57,5 +58,7 @@ app.post("/delete", deleteUserController_1.default);
 // update user
 app.use("/update", authenticateToken_1.default);
 app.post("/update", updateUserController_1.default);
+// validate tokens
+app.get("/tokens", validateTokensController_1.default);
 // listen port
 app.listen(env.PORT || 3001, () => console.log("API ONLINE"));

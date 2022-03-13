@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import authenticateToken from "./tokens/authenticateToken";
 import deleteUserController from "./controllers/deleteUserController";
 import updateUserController from "./controllers/updateUserController";
+import validateTokensController from "./controllers/validateTokensController";
 const { env } = process;
 export const prisma = new PrismaClient();
 const app = express();
@@ -60,6 +61,9 @@ app.post("/delete", deleteUserController);
 // update user
 app.use("/update", authenticateToken);
 app.post("/update", updateUserController);
+
+// validate tokens
+app.get("/tokens", validateTokensController);
 
 // listen port
 app.listen(env.PORT || 3001, () => console.log("API ONLINE"));
