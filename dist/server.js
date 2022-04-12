@@ -24,24 +24,25 @@ exports.authTimeout = "10m";
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 // cors options
-const allowedDomains = [
-    "https://jwt-auth-login-page.vercel.app",
-    "http://localhost:3000",
-];
-app.use((0, cors_1.default)({
-    origin: (origin, callback) => {
-        if (origin === undefined) {
-            callback(new Error("Not allowed origin by CORS"));
-        }
-        else if (allowedDomains.indexOf(origin) !== -1) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error("Not allowed origin by CORS"));
-        }
-    },
-    optionsSuccessStatus: 200,
-}));
+// const allowedDomains = [
+//     "https://jwt-auth-login-page.vercel.app",
+//     "http://localhost:3000",
+// ];
+// app.use(
+//     cors({
+//         origin: (origin, callback) => {
+//             if (origin === undefined) {
+//                 callback(new Error("Not allowed origin by CORS"));
+//             } else if (allowedDomains.indexOf(origin) !== -1) {
+//                 callback(null, true);
+//             } else {
+//                 callback(new Error("Not allowed origin by CORS"));
+//             }
+//         },
+//         optionsSuccessStatus: 200,
+//     })
+// );
+app.use((0, cors_1.default)());
 // register
 app.post("/signup", signUpController_1.default);
 // login
